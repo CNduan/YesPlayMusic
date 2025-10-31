@@ -1,29 +1,41 @@
 {
-  "name": "yesplaymusic",
-  "version": "0.4.10",
+  "name": "VutronMusic",
+  "packageManager": "yarn@1.22.22",
+  "version": "2.7.0",
+  "homepage": "https://github.com/stark81",
+  "author": "stark81 <qq2995734001@gmail.com>",
+  "license": "MIT",
+  "main": "dist/main/index.js",
   "private": true,
-  "description": "A third party music player for Netease Music",
-  "author": "qier222<qier222@outlook.com>",
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "electron:build": "vue-cli-service electron:build -p never",
-    "electron:build-all": "vue-cli-service electron:build -p never -mwl",
-    "electron:build-mac": "vue-cli-service electron:build -p never -m",
-    "electron:build-win": "vue-cli-service electron:build -p never -w",
-    "electron:build-linux": "vue-cli-service electron:build -p never -l",
-    "electron:serve": "vue-cli-service electron:serve",
-    "electron:buildicon": "electron-icon-builder --input=./build/icons/icon.png --output=build --flatten",
-    "electron:publish": "vue-cli-service electron:build -mwl -p always",
-    "postinstall": "electron-builder install-app-deps",
-    "postuninstall": "electron-builder install-app-deps",
-    "prettier": "npx prettier --write ./src",
-    "netease_api:run": "npx @neteaseapireborn/api"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stark81/VutronMusic.git"
   },
-  "main": "background.js",
+  "bugs": {
+    "url": "https://github.com/stark81/VutronMusic/issues"
+  },
+  "scripts": {
+    "dev": "vite",
+    "dev:debug": "vite -d",
+    "dev:debug:force": "vite -d --force",
+    "build": "npm run build:pre && electron-builder --config=buildAssets/builder/config.js",
+    "build:pre": "npm run format:fix && vue-tsc --noEmit && vite build",
+    "build:all": "npm run build:pre && electron-builder --config=buildAssets/builder/config.js -wml",
+    "build:dir": "npm run build:pre && electron-builder --config=buildAssets/builder/config.js --dir",
+    "build:mac": "npm run build:pre && cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --config=buildAssets/builder/config.js --mac",
+    "build:linux": "npm run build:pre && electron-builder --config=buildAssets/builder/config.js --linux",
+    "build:win": "npm run build:pre && electron-builder --config=buildAssets/builder/config.js --windows",
+    "rebuild": "node fix-sandbox.js && electron rebuild.js",
+    "postinstall": "npm run rebuild",
+    "lint": "eslint --ext .js,.ts,.vue -f ./node_modules/eslint-friendly-formatter src",
+    "lint:fix": "eslint --ext .js,.ts,.vue -f ./node_modules/eslint-friendly-formatter --fix src",
+    "format": "prettier .",
+    "format:fix": "prettier . --write",
+    "test": "npm run build:pre && playwright test",
+    "test:linux": "npm run build:pre && xvfb-run --auto-servernum --server-args='-screen 0, 1280x960x24' -- playwright test"
+  },
   "engines": {
-    "node": "14 || 16"
+    "node": ">=18"
   },
   "dependencies": {
     "@neteaseapireborn/api": "^4.29.7",
