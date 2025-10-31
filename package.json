@@ -1,6 +1,3 @@
-{
-  "scripts": {
-    "dev": "vite",
     "dev:debug": "vite -d",
     "dev:debug:force": "vite -d --force",
     "build": "npm run build:pre && electron-builder --config=buildAssets/builder/config.js",
