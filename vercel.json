@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:match*",
+      "destination": "https://splaye00933.vercel.app/:match*"
+    }
+  ]
+}
