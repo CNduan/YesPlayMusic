@@ -1,14 +1,4 @@
 {
-  "license": "MIT",
-  "main": "dist/main/index.js",
-  "private": true,
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/stark81/VutronMusic.git"
-  },
-  "bugs": {
-    "url": "https://github.com/stark81/VutronMusic/issues"
-  },
   "scripts": {
     "dev": "vite",
     "dev:debug": "vite -d",
