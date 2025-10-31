@@ -12,7 +12,6 @@
     "lint": "eslint --ext .js,.ts,.vue -f ./node_modules/eslint-friendly-formatter src",
     "lint:fix": "eslint --ext .js,.ts,.vue -f ./node_modules/eslint-friendly-formatter --fix src",
     "format": "prettier .",
-    "format:fix": "prettier . --write",
     "test": "npm run build:pre && playwright test",
     "test:linux": "npm run build:pre && xvfb-run --auto-servernum --server-args='-screen 0, 1280x960x24' -- playwright test"
   },
